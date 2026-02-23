@@ -136,7 +136,7 @@ hostAliases: []
 
 waldur:
   imageName: "opennode/waldur-mastermind"
-  imageTag: "8.0.4"
+  imageTag: "8.0.5"
   initdbEnabled: true
   initdbImageName: "library/postgres"
   pullPolicy: IfNotPresent
