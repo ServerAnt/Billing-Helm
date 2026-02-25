@@ -136,6 +136,7 @@ hostAliases: []
 
 waldur:
   imageName: "opennode/waldur-mastermind"
+  imageDigest: ""  # Optional: if set, uses the unique docker image hash, priority over tag
   imageTag: "8.0.5"
   initdbEnabled: true
   initdbImageName: "library/postgres"
@@ -431,6 +432,7 @@ waldur:
   homeport:
     imageName: "opennode/waldur-homeport"
     imageTag: "latest"
+    imageDigest: ""  # Optional: if set, uses unique docker image hash, priority over tag
     matomoUrlBase: ""
     matomoSiteId: ""
     customSentryURL: ""
@@ -450,6 +452,7 @@ waldur:
       azureClientSecretKey: ""
     enabled: false
     imageTag: "latest"
+    imageDigest: ""  # Optional: if set, uses digest instead of tag, priority over tag
     uvkServer: "https://uvk-test.ut.ee/client/a74/server.php?format=JSON&action=uvk__"
     everypayGateway: "https://igw-demo.every-pay.com/api/v4"
     everypayUsername: ""

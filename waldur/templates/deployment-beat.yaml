@@ -55,7 +55,11 @@ spec:
               cpu: 100m
               memory: 200Mi
         - name: waldur-mastermind-migrate
+          {{- if .Values.waldur.imageDigest }}
+          image: {{ .Values.global.imageRegistry }}/{{ .Values.waldur.imageName }}@{{ .Values.waldur.imageDigest }}
+          {{- else }}
           image: {{ .Values.global.imageRegistry }}/{{ .Values.waldur.imageName }}:{{ .Values.waldur.imageTag }}
+          {{- end }}
           imagePullPolicy: {{ include "waldur.imagePullPolicy" (dict "tag" .Values.waldur.imageTag "Values" .Values) }}
           args:
             - initdb
@@ -108,7 +112,11 @@ spec:
       {{ end }}
       containers:
         - name: waldur-mastermind-beat
+          {{- if .Values.waldur.imageDigest }}
+          image: {{ .Values.global.imageRegistry }}/{{ .Values.waldur.imageName }}@{{ .Values.waldur.imageDigest }}
+          {{- else }}
           image: {{ .Values.global.imageRegistry }}/{{ .Values.waldur.imageName }}:{{ .Values.waldur.imageTag }}
+          {{- end }}
           imagePullPolicy: {{ include "waldur.imagePullPolicy" (dict "tag" .Values.waldur.imageTag "Values" .Values) }}
           args:
             - "beat"

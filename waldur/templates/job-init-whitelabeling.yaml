@@ -19,7 +19,11 @@ spec:
     spec:
       containers:
         - name: waldur-mastermind-whitelabeling-init
+          {{- if .Values.waldur.imageDigest }}
+          image: {{ .Values.global.imageRegistry }}/{{ .Values.waldur.imageName }}@{{ .Values.waldur.imageDigest }}
+          {{- else }}
           image: {{ .Values.global.imageRegistry }}/{{ .Values.waldur.imageName }}:{{ .Values.waldur.imageTag }}
+          {{- end }}
           imagePullPolicy: {{ include "waldur.imagePullPolicy" (dict "tag" .Values.waldur.imageTag "Values" .Values) }}
           args:
             - init-whitelabeling
@@ -60,7 +64,11 @@ spec:
             {{- toYaml .Values.apiResources | nindent 12 }}
 {{ if has "SAML2" .Values.waldur.authMethods }}
         - name: waldur-mastermind-saml2-metadata-sync
+          {{- if .Values.waldur.imageDigest }}
+          image: {{ .Values.global.imageRegistry }}/{{ .Values.waldur.imageName }}@{{ .Values.waldur.imageDigest }}
+          {{- else }}
           image: {{ .Values.global.imageRegistry }}/{{ .Values.waldur.imageName }}:{{ .Values.waldur.imageTag }}
+          {{- end }}
           imagePullPolicy: {{ include "waldur.imagePullPolicy" (dict "tag" .Values.waldur.imageTag "Values" .Values) }}
           args:
             - saml2-metadata-sync

@@ -27,7 +27,11 @@ spec:
       {{ end }}
       containers:
       - name: waldur-uvk-everypay
+        {{- if .Values.waldur.uvkEverypay.imageDigest }}
+        image: {{ .Values.global.imageRegistry }}/opennode/waldur-uvk-everypay@{{ .Values.waldur.uvkEverypay.imageDigest }}
+        {{- else }}
         image: {{ .Values.global.imageRegistry }}/opennode/waldur-uvk-everypay:{{ .Values.waldur.uvkEverypay.imageTag }}
+        {{- end }}
         imagePullPolicy: {{ include "waldur.imagePullPolicy" (dict "tag" .Values.waldur.uvkEverypay.imageTag "Values" .Values) }}
         env:
           - name: WALDUR_API_URL
