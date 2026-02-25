@@ -109,6 +109,7 @@ hostAliases:
 waldur:
   imageName: "opennode/waldur-mastermind"
   imageTag: "latest"
+  imageDigest: "sha256:ab0050279b011d49f1daf910b016055c114ce3aa1eb8e70c9771e80ce9f963d1"
   initdbEnabled: true
   initdbImageName: "library/postgres"
   pullPolicy: Always
